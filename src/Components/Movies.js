@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { movies } from "./getMovies";
 export default class Movies extends Component {
+    constructor(){
+        super();
+        //used for making states
+        this.state={
+            hover:''
+        }
+    }
   render() {
     let movie = movies.results;
     return (
@@ -19,7 +26,8 @@ export default class Movies extends Component {
               <div className="movies-list">
                 {/* jsx are written inside{} */}
                 {movie.map((movieobj) => (
-                  <div className="card movies-card">
+                    // event lagate hai onmouseEnter
+                  <div className="card movies-card" onMouseEnter={()=>this.setState({hover: movieobj.id})} onMouseLeave={()=>this.setState({hover: ''})}>
                     <img
                       src={`https://image.tmdb.org/t/p/original${movieobj.backdrop_path}`}
                       alt={movieobj.title}
@@ -37,9 +45,12 @@ export default class Movies extends Component {
                         justifyContent: "center",
                       }}
                     >
-                      <a href="#" className="btn btn-primary movies-button">
-                        Add to Favourite
-                      </a>
+                        {
+                            this.state.hover == movieobj.id && <a className="btn btn-primary movies-button">
+                            Add to Favourite
+                          </a>
+                        }
+                      
                     </div>
                   </div>
                 ))}
