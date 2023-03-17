@@ -5,7 +5,8 @@ export default class Movies extends Component {
         super();
         //used for making states
         this.state={
-            hover:''
+            hover:'',
+            parr:[1]
         }
     }
   render() {
@@ -55,13 +56,15 @@ export default class Movies extends Component {
                   </div>
                 ))}
               </div>
-              <div>
-              <nav aria-label="Page navigation example" style={{display:'flex',justifyContent:'center'}}>
+              <div style={{display:'flex',justifyContent:'center'}}>
+              <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    {
+                        this.state.parr.map((value)=>(
+                            <li class="page-item"><a class="page-link" href="#">{value}</a></li>
+                        ))
+                    }
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
                 </nav>
