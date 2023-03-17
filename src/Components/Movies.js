@@ -1,15 +1,25 @@
 import React, { Component } from "react";
 import { movies } from "./getMovies";
+import axios from 'axios';
 export default class Movies extends Component {
     constructor(){
         super();
         //used for making states
         this.state={
             hover:'',
-            parr:[1]
+            parr:[1],
+            currPage:1
         }
     }
+    async componentDidMount(){
+        //side effects waale kaam jisme tym lagne waala hai
+        const res= await axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=e119d74c7ded1379bd00c9a22895630a&language=en-US&page=${this.state.currPage}`);
+        let data= res.data;
+        console.log(data);
+        console.log('mounting done');
+    }
   render() {
+    console.log('called render');
     let movie = movies.results;
     return (
       <>
