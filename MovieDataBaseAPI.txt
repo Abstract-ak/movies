@@ -1,0 +1,11 @@
+Introduction
+
+here I am using The Movie Database (TMDB) API. Below you will find a current list of the available methods on our movie, tv, actor and image API.
+
+To register for an API key, click the  from within your account settings page. You can also view the screenshots below for help:
+
+Click on your avatar or initials in the main navigation ()
+Click the "Settings" link ()
+Click the "API" link in the left sidebar ()
+Click "Create" or "click here" on the API page ()
+Please note that the API registration process is not optimized for mobile devices so you should access these pages on a desktop computer and browser.
