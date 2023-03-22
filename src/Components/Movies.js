@@ -10,6 +10,7 @@ export default class Movies extends Component {
       parr: [1],
       currPage: 1,
       movies: [],
+      favourites:[],
     };
   }
   async componentDidMount() {
@@ -60,6 +61,44 @@ export default class Movies extends Component {
         }
     }
 
+    // handleFavourites=(movie)=>{
+    //   let oldData = JSON.parse(localStorage.getItem('movies-app') || '[]')
+    //   //check kro loca;Storage m wo data hai to remove krdo
+    //   //nahi to uss local storage m data daal do
+    //   if(this.state.favourites.includes(movie.id)){
+    //     oldData= oldData.filter((m)=>m.id!=movie.id)
+    //   }
+    //   else{
+    //     oldData.push(movie);
+    //   }
+    //   localStorage.setItem('movies-app',JSON.stringify(oldData));
+    //   console.log(oldData);
+    // }
+    // handleFavouritesState=()=>{
+    //   let oldData = JSON.parse(localStorage.getItem('movies-app') || '[]')
+    //   let temp = oldData.map((movie)=>movie.id)
+    //   this.setState({
+    //     favourites:[...temp]
+    //   })
+    // }
+    handleFavourites=(movie)=>{
+      let oldData = JSON.parse(localStorage.getItem("movies-app") || "[]")
+      if(this.state.favourites.includes(movie.id)){
+          oldData = oldData.filter((m)=>m.id!=movie.id)
+      }else{
+          oldData.push(movie)
+      }
+      localStorage.setItem("movies-app",JSON.stringify(oldData));
+      console.log(oldData);
+      this.handleFavouritesState();
+  }
+  handleFavouritesState=()=>{
+      let oldData = JSON.parse(localStorage.getItem("movies-app") || "[]")
+      let temp = oldData.map((movie)=>movie.id);
+      this.setState({
+          favourites:[...temp]
+      })
+  }
   render() {
     console.log("render");
     // let movie = movies.results;
@@ -103,9 +142,7 @@ export default class Movies extends Component {
                       }}
                     >
                       {this.state.hover == movieobj.id && (
-                        <a className="btn btn-primary movies-button">
-                          Add to Favourite
-                        </a>
+                        <a className="btn btn-primary movies-button" onClick={()=>this.handleFavourites(movieobj)}>{this.state.favourites.includes(movieobj.id)?"Remove from favourites":"Add to favourites"}</a>
                       )}
                     </div>
                   </div>
